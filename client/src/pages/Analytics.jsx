@@ -12,16 +12,16 @@ const RISK_COLORS = ['#ef4444', '#f97316', '#f59e0b', '#22c55e'];
 
 export default function Analytics() {
   const [overview, setOverview] = useState(null);
-  const [timeseries, setTimeseries] = useState([]);
-  const [routePerf, setRoutePerf] = useState([]);
-  const [riskDist, setRiskDist] = useState([]);
+  const [timeseries, setTimeseries] = useState(getDemoTimeseries(30));
+  const [routePerf, setRoutePerf] = useState(getDemoRoutePerf());
+  const [riskDist, setRiskDist] = useState(getDemoRiskDist());
   const [period, setPeriod] = useState(30);
 
   useEffect(() => {
-    getAnalyticsOverview().then(r => setOverview(r.data)).catch(() => {});
-    getTimeseries(period).then(r => setTimeseries(r.data || [])).catch(() => {});
-    getRoutePerformance().then(r => setRoutePerf(r.data || [])).catch(() => {});
-    getRiskDistribution().then(r => setRiskDist(r.data || [])).catch(() => {});
+    getAnalyticsOverview().then(r => { if (r?.data) setOverview(r.data); }).catch(() => {});
+    getTimeseries(period).then(r => { if (r?.data?.length) setTimeseries(r.data); }).catch(() => setTimeseries(getDemoTimeseries(period)));
+    getRoutePerformance().then(r => { if (r?.data?.length) setRoutePerf(r.data); }).catch(() => {});
+    getRiskDistribution().then(r => { if (r?.data?.length) setRiskDist(r.data); }).catch(() => {});
   }, [period]);
 
   return (
@@ -153,4 +153,36 @@ export default function Analytics() {
       </div>
     </div>
   );
+}
+
+// ─── Demo Data ────────────────────────────────────────────────────────────────
+function getDemoTimeseries(days = 30) {
+  return Array.from({ length: days }, (_, i) => {
+    const d = new Date(Date.now() - (days - 1 - i) * 86400000);
+    return {
+      date: d.toISOString().slice(5, 10),
+      disruptions: Math.floor(Math.random() * 6 + 2),
+      resolved: Math.floor(Math.random() * 5 + 1),
+      riskScore: Math.floor(Math.random() * 40 + 30),
+    };
+  });
+}
+
+function getDemoRoutePerf() {
+  return [
+    { route: 'Asia→LA', onTime: 82, disruptions: 8, avgDelay: 4 },
+    { route: 'India→UK', onTime: 91, disruptions: 3, avgDelay: 2 },
+    { route: 'US→MX', onTime: 67, disruptions: 14, avgDelay: 9 },
+    { route: 'BD→EU', onTime: 75, disruptions: 9, avgDelay: 6 },
+    { route: 'BR→NY', onTime: 88, disruptions: 5, avgDelay: 3 },
+  ];
+}
+
+function getDemoRiskDist() {
+  return [
+    { level: 'Critical', count: 1 },
+    { level: 'High', count: 2 },
+    { level: 'Medium', count: 1 },
+    { level: 'Low', count: 1 },
+  ];
 }
