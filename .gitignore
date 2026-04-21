@@ -50,7 +50,6 @@ Thumbs.db
 # Firebase
 .firebase/
 firebase-debug.log
-.firebaserc
 
 # Misc
 .cache/
