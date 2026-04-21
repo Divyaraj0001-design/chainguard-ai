@@ -105,17 +105,20 @@ export function useAnalytics() {
 export function useSocketStatus() {
   const [connected, setConnected] = useState(false);
   const [latency, setLatency] = useState(null);
+  const [isDemoMode, setIsDemoMode] = useState(false);
   const pingRef = useRef(null);
 
   useEffect(() => {
     const socket = getSocket();
-    const checkStatus = () => setConnected(socket.connected);
+    // After 5s if still not connected → demo mode
+    const demoTimer = setTimeout(() => {
+      if (!socket.connected) setIsDemoMode(true);
+    }, 5000);
 
-    socket.on('connect', () => { setConnected(true); });
+    socket.on('connect', () => { setConnected(true); setIsDemoMode(false); });
     socket.on('disconnect', () => { setConnected(false); setLatency(null); });
     socket.on('connected', () => setConnected(true));
 
-    // Ping for latency
     pingRef.current = setInterval(() => {
       if (socket.connected) {
         const start = Date.now();
@@ -123,16 +126,17 @@ export function useSocketStatus() {
       }
     }, 10000);
 
-    checkStatus();
+    setConnected(socket.connected);
     return () => {
       socket.off('connect');
       socket.off('disconnect');
       socket.off('connected');
       clearInterval(pingRef.current);
+      clearTimeout(demoTimer);
     };
   }, []);
 
-  return { connected, latency };
+  return { connected, latency, isDemoMode };
 }
 
 // ─── Demo Data Fallback ───────────────────────────────────────────────────────
