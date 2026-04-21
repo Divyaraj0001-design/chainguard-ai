@@ -1,17 +1,27 @@
 # 🛡️ ChainGuard AI — Smart Supply Chain Intelligence
 
-> **Google Solution Challenge 2026** | Disruption Detection & Auto-Rerouting powered by Google Gemini
+> **Google Solution Challenge 2026** | Real-time Disruption Detection & AI-Powered Auto-Rerouting
 
-[![Google Gemini](https://img.shields.io/badge/AI-Google%20Gemini%201.5%20Flash-blue?logo=google)](https://ai.google.dev)
-[![Firebase](https://img.shields.io/badge/Database-Firebase%20Firestore-orange?logo=firebase)](https://firebase.google.com)
-[![React](https://img.shields.io/badge/Frontend-React%2018-61DAFB?logo=react)](https://react.dev)
-[![Node.js](https://img.shields.io/badge/Backend-Node.js%20Express-green?logo=node.js)](https://nodejs.org)
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Firebase_Hosting-orange?style=for-the-badge)](https://chainguard-ai-80d5e.web.app)
+[![GitHub](https://img.shields.io/badge/GitHub-Divyaraj0001--design-black?style=for-the-badge&logo=github)](https://github.com/Divyaraj0001-design/chainguard-ai)
+[![Google Gemini](https://img.shields.io/badge/AI-Gemini_2.5_Flash-blue?style=for-the-badge&logo=google)](https://ai.google.dev)
+[![Firebase](https://img.shields.io/badge/Database-Firebase_Firestore-orange?style=for-the-badge&logo=firebase)](https://firebase.google.com)
+
+---
+
+## 🔗 Links
+
+| | Link |
+|---|---|
+| 🌐 **Live Demo** | https://chainguard-ai-80d5e.web.app |
+| 💻 **GitHub Repo** | https://github.com/Divyaraj0001-design/chainguard-ai |
+| 🔥 **Firebase Console** | https://console.firebase.google.com/project/chainguard-ai-80d5e |
 
 ---
 
 ## 🎯 What is ChainGuard AI?
 
-ChainGuard AI is a **full-stack, real-time supply chain disruption detection and auto-rerouting system** that uses **Google Gemini 1.5 Flash** to proactively monitor global shipments, score disruption risk (0–100), and automatically recommend or execute optimal alternate routes before delays cascade.
+ChainGuard AI is a **full-stack, real-time supply chain disruption detection and auto-rerouting system** that uses **Google Gemini 2.5 Flash** to proactively monitor global shipments, score disruption risk (0–100), and automatically recommend optimal alternate routes before delays cascade.
 
 **Impact:** 40% faster disruption detection vs. manual monitoring. Aligned with **SDG 9** (Industry & Infrastructure) and **SDG 11** (Sustainable Cities).
 
@@ -21,13 +31,13 @@ ChainGuard AI is a **full-stack, real-time supply chain disruption detection and
 
 | Feature | Description |
 |---|---|
-| 🤖 **Gemini AI Engine** | Analyzes GPS, weather, traffic, and port data; scores risk 0–100 |
-| 🗺️ **Live Map** | Interactive SVG world map with risk heatmap and shipment markers |
-| ⚡ **Auto-Rerouting** | When risk > threshold, Gemini recommends best alternate route via Google Maps Routes API |
-| 📊 **Analytics Panel** | Historical disruptions, resolution times, route performance, SDG impact |
-| 🔔 **Alert System** | Real-time Socket.IO + SMS (Twilio) + webhook notifications |
-| 🌡️ **Real-Time Ingestion** | OpenWeatherMap + TomTom Traffic + GPS feeds every 30s |
-| 🔥 **Firebase Firestore** | Cloud-native storage with in-memory fallback for dev |
+| 🤖 **Gemini AI Engine** | On-demand analysis — scores risk 0–100 across weather, traffic, port & geopolitical factors |
+| 🗺️ **Live World Map** | Interactive Leaflet.js + OpenStreetMap with real country boundaries, risk heatmap & route lines |
+| ⚡ **Smart Risk Scoring** | Real-time sensor-based risk computation (no API quota issues) |
+| 📊 **Analytics Dashboard** | Historical disruptions, resolution times, route performance & SDG impact |
+| 🔔 **Real-Time Alerts** | Socket.IO live updates + disruption notifications |
+| 🌡️ **Data Ingestion** | Weather + Traffic + Port data every 5 minutes with intelligent fallback |
+| 🔥 **Firebase Firestore** | Cloud-native real-time database |
 
 ---
 
@@ -35,26 +45,20 @@ ChainGuard AI is a **full-stack, real-time supply chain disruption detection and
 
 ```
 chainguard-ai/
-├── client/                   # React + Tailwind + Framer Motion frontend
+├── client/                   # React 18 + Tailwind + Framer Motion frontend
 │   ├── src/
-│   │   ├── components/       # Sidebar, Header, LiveMap, ShipmentCard, RiskGauge
+│   │   ├── components/       # Sidebar, Header, LiveMap (Leaflet), ShipmentCard, RiskGauge
 │   │   ├── pages/            # Dashboard, Shipments, Disruptions, Analytics, Alerts, AIEngine, MapView
-│   │   ├── hooks/            # useShipments, useDisruptionAlerts, useAnalytics, useSocketStatus
-│   │   └── services/         # api.js (Axios), socket.js (Socket.IO client)
-│   ├── tailwind.config.js
+│   │   ├── hooks/            # useShipments, useAnalytics, useSocketStatus
+│   │   └── services/         # api.js (Axios), socket.js (Socket.IO)
 │   └── vite.config.js
 ├── server/                   # Node.js + Express + Socket.IO backend
 │   ├── routes/               # shipments, ai, disruptions, analytics, alerts, maps
 │   ├── services/
-│   │   ├── geminiEngine.js   # Gemini 1.5 Flash integration
-│   │   ├── dataIngestion.js  # Weather + Traffic + Port data fetcher
+│   │   ├── geminiEngine.js   # Gemini 2.5 Flash AI integration
+│   │   ├── dataIngestion.js  # Smart sensor-based risk scoring
 │   │   └── firebase.js       # Firestore + in-memory fallback
-│   ├── utils/logger.js
 │   └── index.js
-├── ai/                       # Standalone AI module (also copied to server/services)
-│   └── geminiEngine.js
-├── config/                   # (Add firebase-adminsdk.json here)
-├── package.json              # Root workspace
 └── README.md
 ```
 
@@ -63,16 +67,15 @@ chainguard-ai/
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js v18+ 
+- Node.js v18+
 - npm v9+
-- Google Gemini API key (free at [ai.google.dev](https://ai.google.dev))
+- Google Gemini API key (free at [aistudio.google.com](https://aistudio.google.com/app/apikey))
 
 ### 1. Clone and Install
 
 ```bash
-git clone https://github.com/your-username/chainguard-ai.git
+git clone https://github.com/Divyaraj0001-design/chainguard-ai.git
 cd chainguard-ai
-npm install
 cd server && npm install
 cd ../client && npm install
 ```
@@ -87,28 +90,24 @@ Edit `server/.env`:
 
 ```env
 PORT=3001
-GEMINI_API_KEY=your_gemini_api_key           # Required for AI analysis
-GOOGLE_MAPS_API_KEY=your_maps_api_key         # Optional - for real routing
-OPENWEATHER_API_KEY=your_weather_api_key      # Optional - uses mock data if absent
-TOMTOM_API_KEY=your_tomtom_api_key            # Optional - uses mock data if absent
-TWILIO_ACCOUNT_SID=your_twilio_sid            # Optional - for SMS alerts
-TWILIO_AUTH_TOKEN=your_twilio_token
-TWILIO_PHONE_NUMBER=+1234567890
-FIREBASE_PROJECT_ID=your_project_id           # Optional - uses in-memory if absent
+GEMINI_API_KEY=your_gemini_api_key           # Required — get free at aistudio.google.com
+FIREBASE_PROJECT_ID=your_project_id          # Required — from Firebase console
 FIREBASE_PRIVATE_KEY="your_private_key"
 FIREBASE_CLIENT_EMAIL=your_service_account_email
 CLIENT_URL=http://localhost:5173
-```
 
-> **Note:** The app works fully in **demo mode** without any API keys — Gemini analysis falls back to mock risk scores, weather/traffic use realistic simulated data, and Firebase uses in-memory storage.
+# Optional — smart mock data used if absent
+OPENWEATHER_API_KEY=your_weather_api_key
+TOMTOM_API_KEY=your_tomtom_api_key
+```
 
 ### 3. Start Development Servers
 
 ```bash
-# Terminal 1 — Backend
-cd server && node index.js
+# Terminal 1 — Backend (port 3001)
+cd server && npm start
 
-# Terminal 2 — Frontend
+# Terminal 2 — Frontend (port 5173)
 cd client && npm run dev
 ```
 
@@ -116,59 +115,52 @@ Open **http://localhost:5173** 🎉
 
 ---
 
-## 🤖 Google Gemini AI Engine
+## 🤖 Gemini AI Engine
 
-The AI engine (`server/services/geminiEngine.js`) uses **Gemini 1.5 Flash** to:
+The AI engine (`server/services/geminiEngine.js`) uses **Gemini 2.5 Flash** for on-demand analysis:
 
-1. **Score disruption risk (0–100)** across weather, traffic, port, customs, mechanical, and geopolitical factors
-2. **Predict cascade effects** on connected shipments
-3. **Recommend optimal reroutes** comparing cost, time, and reliability
-4. **Adjust ETAs** with confidence scores
-5. **Generate executive summaries** for supply chain health
+1. **Risk Scoring (0–100)** across weather, traffic, port, customs, mechanical & geopolitical factors
+2. **Cascade Effect Prediction** on connected shipments
+3. **Optimal Reroute Recommendations** with time & cost estimates
+4. **ETA Adjustments** with confidence scores
+5. **Executive AI Insight** summaries
 
 ```javascript
-const analysis = await analyzeDisruptionRisk(enrichedShipment);
+// On-demand AI analysis (user-triggered, not background)
+const analysis = await analyzeDisruptionRisk(shipmentData);
 // Returns: { riskScore, riskLevel, riskFactors, recommendations, etaAdjustment, aiInsight }
 ```
 
-**API Endpoints:**
+**AI API Endpoints:**
 - `POST /api/ai/analyze` — Analyze a single shipment
 - `POST /api/ai/reroute` — Get rerouting recommendation
 - `GET /api/ai/summary` — Global supply chain health report
-- `GET /api/ai/status` — Engine status and capabilities
+- `GET /api/ai/status` — Engine status
 
 ---
 
-## 🌐 Google Maps Platform
+## 🗺️ Live Map (Leaflet + OpenStreetMap)
 
-- `GET /api/maps/directions` — Directions API for route polylines
-- `POST /api/maps/routes` — Routes API v2 with traffic awareness
-- `GET /api/maps/geocode` — Address geocoding
+- Real interactive world map (no API key needed — completely free)
+- Color-coded risk markers (🟢 Low → 🟡 Medium → 🟠 High → 🔴 Critical)
+- Dashed route polylines showing shipment paths
+- Glow heatmap for high-risk shipments
+- Click markers for rich shipment detail popups
+- Zoom, pan, fully interactive
 
 ---
 
 ## 📡 Real-Time Architecture
 
 ```
-GPS/IoT Feeds → Data Ingestion Service (every 30s)
-                         ↓
-              OpenWeatherMap + TomTom APIs
-                         ↓
-              Gemini 1.5 Flash Analysis
-                         ↓
-     Firebase Firestore ← → Socket.IO (live push to browser)
-                         ↓
-         SMS (Twilio) + Webhooks → Drivers/Managers
+Data Sources → Data Ingestion (every 5 min)
+                        ↓
+         Smart Sensor Risk Scoring (instant)
+                        ↓
+    Firebase Firestore ←→ Socket.IO → Live Dashboard
+                        ↓
+         Gemini AI Analysis (on-demand via UI)
 ```
-
----
-
-## 🎨 Design System
-
-- **Color Palette:** Deep navy (#050c1a) + Electric blue (#0ea5e9) + Amber accent (#f59e0b)
-- **Effects:** Glassmorphism cards with backdrop-filter, animated risk gauges, SVG world map
-- **Animations:** Framer Motion — fade-in, hover lifts, animated SVG rings, pulse indicators
-- **Typography:** Inter (UI) + JetBrains Mono (data/code)
 
 ---
 
@@ -185,47 +177,50 @@ GPS/IoT Feeds → Data Ingestion Service (every 30s)
 
 | Route | Method | Description |
 |---|---|---|
-| `/api/shipments` | GET | List all shipments with Gemini analysis |
-| `/api/shipments/:id/analyze` | POST | Trigger on-demand Gemini analysis |
+| `/api/shipments` | GET | All shipments with risk analysis |
+| `/api/shipments/:id/analyze` | POST | On-demand Gemini AI analysis |
 | `/api/disruptions/active` | GET | High-risk disruptions (score > 50) |
-| `/api/disruptions/heatmap` | GET | Risk coordinates for map overlay |
 | `/api/analytics/overview` | GET | KPI dashboard metrics |
-| `/api/analytics/timeseries` | GET | Disruption trend data |
 | `/api/ai/analyze` | POST | Gemini risk analysis |
 | `/api/ai/reroute` | POST | Rerouting recommendation |
-| `/api/alerts/sms` | POST | Send Twilio SMS alert |
-| `/api/alerts/broadcast` | POST | Socket.IO broadcast |
+| `/health` | GET | Server health check |
 
 ---
 
-## ☁️ Deployment (GCP)
+## ☁️ Deployment
 
+**Frontend** — Firebase Hosting:
 ```bash
-# Build frontend
 cd client && npm run build
+npx firebase-tools deploy --only hosting
+# Live at: https://chainguard-ai-80d5e.web.app
+```
 
-# Deploy to Cloud Run (backend)
-gcloud run deploy chainguard-api \
-  --source ./server \
-  --region us-central1 \
-  --allow-unauthenticated
-
-# Deploy frontend to Firebase Hosting
-firebase deploy --only hosting
+**Backend** — Railway / Cloud Run:
+```bash
+# railway.app → connect GitHub → select /server → add .env vars → deploy
 ```
 
 ---
 
-## 👨‍💻 Built With
+## 🛠️ Tech Stack
 
-- **Google Gemini 1.5 Flash** — Multimodal AI analysis
-- **Firebase Firestore** — Real-time cloud database  
-- **Google Maps Platform** — Routing and geocoding
-- **React 18** + **Framer Motion** — Premium animated UI
-- **Node.js** + **Express** + **Socket.IO** — Real-time backend
-- **Tailwind CSS** — Utility-first styling
-- **Recharts** — Analytics data visualization
+| Layer | Technology |
+|---|---|
+| **AI** | Google Gemini 2.5 Flash |
+| **Database** | Firebase Firestore |
+| **Map** | Leaflet.js + OpenStreetMap |
+| **Frontend** | React 18, Vite, Tailwind CSS, Framer Motion |
+| **Backend** | Node.js, Express, Socket.IO |
+| **Charts** | Recharts |
+| **Auth/Infra** | Firebase, node-cron |
 
 ---
 
-*Built for Google Solution Challenge 2026 — Proactive AI for a Resilient Global Supply Chain* 🛡️
+## 👨‍💻 Team
+
+Built for **Google Solution Challenge 2026** by **Divyaraj**
+
+---
+
+*ChainGuard AI — Proactive Intelligence for a Resilient Global Supply Chain 🛡️*
