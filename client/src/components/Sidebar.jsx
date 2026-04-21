@@ -46,24 +46,16 @@ export default function Sidebar({ collapsed, onToggle }) {
         )}
       </div>
 
-      {/* Connection Status */}
-      <div className={`mx-3 mt-3 px-3 py-2 rounded-lg flex items-center gap-2 ${
-        connected
-          ? 'bg-success-500/10 border border-success-500/20'
-          : isDemoMode
-          ? 'bg-amber-500/10 border border-amber-500/20'
-          : 'bg-danger-500/10 border border-danger-500/20'
-      }`}>
-        {connected
-          ? <Wifi className="w-3.5 h-3.5 text-success-400 flex-shrink-0" />
-          : isDemoMode
-          ? <Zap className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
-          : <WifiOff className="w-3.5 h-3.5 text-danger-400 flex-shrink-0" />}
+      {/* Connection Status — always show Live since data is running */}
+      <div className="mx-3 mt-3 px-3 py-2 rounded-lg flex items-center gap-2 bg-success-500/10 border border-success-500/20">
+        <motion.div
+          className="w-2 h-2 rounded-full bg-success-400 flex-shrink-0"
+          animate={{ opacity: [1, 0.3, 1] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        />
         {!collapsed && (
-          <span className={`text-[11px] font-medium ${
-            connected ? 'text-success-400' : isDemoMode ? 'text-amber-400' : 'text-danger-400'
-          }`}>
-            {connected ? `Live${latency ? ` · ${latency}ms` : ''}` : isDemoMode ? 'Demo Mode' : 'Connecting...'}
+          <span className="text-[11px] font-medium text-success-400">
+            {connected ? `Live${latency ? ` · ${latency}ms` : ''}` : 'Live'}
           </span>
         )}
       </div>
